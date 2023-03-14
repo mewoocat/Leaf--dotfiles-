@@ -1,0 +1,237 @@
+
+
+;; Dot
+(defwidget dot []
+    (button
+      :class "con"
+      ""
+    )
+)
+
+
+;; Launcher button
+
+(defwidget launcher []
+  (button
+    :class "launcher"
+    ;;:timeout 1
+    :onclick "rofi -show drun && sleep 1"
+    "";;"𝄞"
+  )
+)
+
+;; Workspaces
+
+
+(deflisten workspace "./scripts/workspaces_f")
+(defwidget workspaces_f []
+  (eventbox
+		:onscroll "echo {} | sed -e \"s/up/-1/g\" -e \"s/down/+1/g\" | xargs hyprctl dispatch workspace"
+		(box
+			:class "workspaces"
+			:spacing 0
+            ;;:height 100
+
+		  (for ws in workspace
+		    (button
+
+            ;;:vexpand "true"
+                    ;;:valign "start" 
+					:onclick "hyprctl dispatch workspace ${ws.number}"
+					:class "ws-icon ${ws.color == "occupied" ? "occupied" : "empty"} ${ws.color == "current" ? "current" : ""}"
+                    ;; comment the next line out and change style in scss / this also allows for hover color change
+			      	;;:style "color: ${ws.color};"
+					;;:tooltip {ws.tooltip}
+                    (label
+					  :text ""
+                      :yalign 0.6  ;; fix for empty dots wrong valign?
+                     )
+                    )))))
+
+;; ${workspace.id == current_workspace ? "current" : ""} ${workspace.windows > 0 ? "occupied" : "empty"}"
+
+
+;; Battery
+
+(defwidget battery []
+    (label
+        :text "${EWW_BATTERY.BAT0.capacity}%"
+    )
+)
+
+;; Time
+
+(defpoll time 
+    :interval "10s"
+    "date '+%B %e   %l:%M %P'"
+)
+
+(defwidget time []
+    (label
+      :text "${time}"
+    )
+)
+
+;; Volume
+
+(defpoll volume 
+  :interval "0.01s"
+  "scripts/volume.sh"
+)
+
+
+
+
+;; Temperature
+
+(defpoll temp
+    :interval "2s"
+    "scripts/getTemp.sh"
+)
+
+
+
+;; Network
+
+(defpoll wifi
+    :interval "2s"
+    "scripts/network.sh"
+)
+
+
+
+
+(defpoll battery
+    :interval "1s"
+    "scripts/battery.sh"
+)
+
+(defpoll memory
+  :interval "1s"
+  "scripts/mem.sh"
+)
+
+(defwidget right []
+
+    (box
+        :halign "end"
+        :space-evenly false
+      (box
+        :spacing 20
+        :halign "end"
+        :space-evenly false
+        (label
+          :text " ${temp}°C"
+          :class "icon"
+          ;;:halign "end"       ;; Use this to fix dumbass spacing issue
+          :width 0
+        )
+        (label
+          :text " ${memory}%"
+          :class "icon"
+        )
+        (box
+          (label
+            :text "${EWW_BATTERY.BAT0.capacity}%"
+          )
+          (overlay
+            (label
+              :class "battery icon"
+              :text "${battery.bg}"
+            )
+            (label
+              :class "battery-bg icon"
+              :text "${battery.icon}"
+            )
+          )
+        )
+        (overlay
+          (label
+            :class "wifi icon"
+            :text "${wifi.icon}"
+            ;;:halign "end"       ;; Use this to fix dumbass spacing issue
+          )
+          (label
+            :class "wifi icon"
+            :text "${wifi.bg}"
+            ;;:halign "end"       ;; Use this to fix dumbass spacing issue
+          )
+        )
+        (overlay
+          (label
+            :text "${volume.bg}"
+            :class "volume-bg"
+            :halign "end"       ;; Use this to fix dumbass spacing issue
+            :width 20
+          )
+          (label
+            :text "${volume.icon}"
+            :class "volume"
+            :halign "end"       ;; Use this to fix dumbass spacing issue
+            :width 20
+          )
+        )
+      )
+      (button
+          :class "con"
+          ""
+      )
+    )
+)
+
+
+
+;; class "${workspace.id == current_workspace ? "current" : ""} ${workspace.windows > 0 ? "occupied" : "empty"}"
+
+
+
+
+
+;; Left widgets
+
+(deflisten window :initial "..." "bash ~/.config/eww/scripts/get-window-title")
+(defwidget left []
+    (box 
+        :halign "start"
+        :space-evenly false
+        (launcher)
+        (workspaces_f)
+        ;;(workspaces_test :halign "center" :vexpand true :hexpand false :orientation "h")
+        (label 
+          :limit-width 20
+          :class "window-name"
+          :text "${window}")
+    )
+)
+
+;; Center widgets
+
+(defwidget center []
+    (box
+        :halign "center"
+        (time)
+    )
+)
+
+;; Right widgets
+
+
+
+;; Bar
+
+(defwindow bar
+  :monitor 0
+  :windowtype "dock"
+  :geometry (geometry :x "0%"
+                      :y "0%"
+                      :width "101%"
+                      :height "4%"
+                      :anchor "top center")
+  :exclusive true
+     
+	(box :class "container" :space-evenly "true"
+		(left)
+        (center)	
+        (right)
+    )
+)
