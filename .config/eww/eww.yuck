@@ -75,31 +75,22 @@
 ;; Volume
 
 (defpoll volume 
-  :interval "0.01s"
+  :interval "1s"
   "scripts/volume.sh"
 )
-
-
-
+(deflisten volumeL "./scripts/checkVolume.sh")
 
 ;; Temperature
-
 (defpoll temp
     :interval "2s"
     "scripts/getTemp.sh"
 )
 
-
-
 ;; Network
-
 (defpoll wifi
     :interval "2s"
     "scripts/network.sh"
 )
-
-
-
 
 (defpoll battery
     :interval "1s"
@@ -120,8 +111,13 @@
         :spacing 20
         :halign "end"
         :space-evenly false
+        (image
+          :path "/home/ghost/Downloads/sprite.gif"
+          :image-width 20
+          :image-height 20
+        )
         (label
-          :text " ${temp}°C"
+          :text " ${temp}°C ${EWW_CPU.avg}"
           :class "icon"
           ;;:halign "end"       ;; Use this to fix dumbass spacing issue
           :width 0
@@ -159,13 +155,14 @@
         )
         (overlay
           (label
-            :text "${volume.bg}"
+            :text "${volumeL.bg}"
             :class "volume-bg"
             :halign "end"       ;; Use this to fix dumbass spacing issue
             :width 20
           )
+
           (label
-            :text "${volume.icon}"
+            :text "${volumeL.icon}"
             :class "volume"
             :halign "end"       ;; Use this to fix dumbass spacing issue
             :width 20
