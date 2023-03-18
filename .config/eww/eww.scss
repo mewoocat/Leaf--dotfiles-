@@ -10,10 +10,18 @@
   background-color: rgba(colors.$bg, 0.6);
   color: colors.$fg;
   //padding: 10px;
-  font-size: 18px;
+  font-size: 16px;
   font-family: "System-ui";
    // filter: blur(5px);
+}
 
+.bar_external {
+  background-color: rgba(colors.$bg, 0.6);
+  color: colors.$fg;
+  //padding: 10px;
+  font-size: 16px;
+  font-family: "System-ui";
+   // filter: blur(5px);
 }
 
 .container{
@@ -131,6 +139,10 @@
 .battery-bg{
     font-size: 26px;
     color: #00ff00;
+}
+
+.battery-critical{
+    color: #ff0000;
 }
 
 .volume{

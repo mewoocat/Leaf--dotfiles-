@@ -1,6 +1,6 @@
 #!/bin/bash
 
 eww open --toggle calendar
-# Fixes quick toggle missing an instance
+# Fixes quick toggle missing an instance (Doesn't work anymore?)
 sleep 1
 

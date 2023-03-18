@@ -102,6 +102,18 @@
   "scripts/mem.sh"
 )
 
+(defpoll weather_info
+  :interval "10s"
+  "scripts/weather.sh"
+)
+
+(defwidget weather []
+  (label
+    :class "weather"
+    :text "${weather_info}"
+  )
+)
+
 (defwidget right []
 
     (box
@@ -116,8 +128,14 @@
           :image-width 20
           :image-height 20
         )
+        ;;(weather)
         (label
-          :text " ${temp}°C ${EWW_CPU.avg}"
+          :class "weather"
+          :text "${weather_info}"
+        )
+
+        (label
+          :text " ${temp}°C | ${round(EWW_CPU.avg, 0)}%"
           :class "icon"
           ;;:halign "end"       ;; Use this to fix dumbass spacing issue
           :width 0
@@ -132,11 +150,11 @@
           )
           (overlay
             (label
-              :class "battery icon"
+              :class "battery icon "
               :text "${battery.bg}"
             )
             (label
-              :class "battery-bg icon"
+              :class "battery-bg icon ${battery.critical == "yes" ? "battery-critical" : ""}"
               :text "${battery.icon}"
             )
           )
@@ -223,11 +241,30 @@
   :geometry (geometry :x "0%"
                       :y "0%"
                       :width "101%"
-                      :height "4%"
+                      :height "2%"
                       :anchor "top center")
   :exclusive true
      
-	(box :class "container" :space-evenly "true"
+	(centerbox :class "container" ;;:space-evenly "false"
+        :orientation "h"
+		(left)
+        (center)	
+        (right)
+    )
+)
+
+(defwindow bar_external
+  :monitor 1
+  :windowtype "dock"
+  :geometry (geometry :x "0%"
+                      :y "0%"
+                      :width "101%"
+                      :height "2%"
+                      :anchor "top center")
+  :exclusive true
+     
+	(centerbox :class "container" ;;:space-evenly "false"
+        :orientation "h"
 		(left)
         (center)	
         (right)
@@ -248,4 +285,19 @@
     :class "calendar"
   )
 
+)
+
+;; System menu
+
+(defwindow system_menu
+  :monitor 0
+  :windowtype "normal"
+  :geometry (geometry :x "0%"
+                      :y "0%"
+                      :width "30%"
+                      :height "30%"
+                      :anchor "top right")
+  (label
+  :text "blah blah"
+  )
 )
