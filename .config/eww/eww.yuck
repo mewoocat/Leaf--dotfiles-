@@ -2,11 +2,11 @@
 
 ;; Dot
 (defwidget dot []
-    (button
-      :class "con"
-      ""
+  (button
+    :class "con"
+    ""
     )
-)
+  )
 
 
 ;; Launcher button
@@ -17,11 +17,10 @@
     ;;:timeout 1
     :onclick "rofi -show drun && sleep 1"
     "";;"𝄞"
+    )
   )
-)
 
 ;; Workspaces
-
 
 (deflisten workspace "./scripts/workspaces_f")
 (defwidget workspaces_f []
@@ -107,6 +106,16 @@
   "scripts/weather.sh"
 )
 
+(defpoll user
+  :interval "24h"
+  "echo $USER"
+)
+
+
+
+
+
+
 (defwidget weather []
   (label
     :class "weather"
@@ -114,8 +123,85 @@
   )
 )
 
-(defwidget right []
+(defwidget sprite []
+  (image
+    :path "/home/ghost/Downloads/shinx_28px.gif"
+    :image-width 20
+    :image-height 20
+  )
+)
 
+(defwidget cpu []
+  (label
+    :text " ${temp}°C | ${round(EWW_CPU.avg, 0)}%"
+    :class "icon"
+    ;;:halign "end"       ;; Use this to fix dumbass spacing issue
+    :width 0
+  )
+) 
+
+(defwidget memory []
+  (label
+    :text " ${memory}%"
+    :class "icon"
+  )
+) 
+
+(defwidget battery []
+  (box
+    (label
+      :text "${EWW_BATTERY.BAT0.capacity}%"
+    )
+    (overlay
+      (label
+        :class "battery icon "
+        :text "${battery.bg}"
+      )
+      (label
+        :class "battery-bg icon ${battery.critical == "yes" ? "battery-critical" : ""}"
+        :text "${battery.icon}"
+      )
+    )
+  )
+)
+
+
+(defwidget wifi []
+  (overlay
+    (label
+      :class "wifi wifi-bg icon"
+      :text "${wifi.bg}"
+      ;;:halign "end"       ;; Use this to fix dumbass spacing issue
+    )
+    (label
+      :class "wifi icon"
+      :text "${wifi.icon}"
+      ;;:halign "end"       ;; Use this to fix dumbass spacing issue
+    )
+  )
+)
+
+(defwidget volume []
+  (overlay
+    (label
+      :text "${volumeL.bg}"
+      :class "volume-bg"
+      ;;:halign "end"       ;; Use this to fix dumbass spacing issue
+      :width 20
+    )
+
+    (label
+      :text "${volumeL.icon}"
+      :class "volume"
+      ;;:halign "end"       ;; Use this to fix dumbass spacing issue
+      :width 20
+    )
+  )
+)
+
+
+;; Right widgets
+(defwidget right []
     (box
         :halign "end"
         :space-evenly false
@@ -123,73 +209,17 @@
         :spacing 20
         :halign "end"
         :space-evenly false
-        (image
-          :path "/home/ghost/Downloads/sprite.gif"
-          :image-width 20
-          :image-height 20
-        )
-        ;;(weather)
-        (label
-          :class "weather"
-          :text "${weather_info}"
-        )
-
-        (label
-          :text " ${temp}°C | ${round(EWW_CPU.avg, 0)}%"
-          :class "icon"
-          ;;:halign "end"       ;; Use this to fix dumbass spacing issue
-          :width 0
-        )
-        (label
-          :text " ${memory}%"
-          :class "icon"
-        )
-        (box
-          (label
-            :text "${EWW_BATTERY.BAT0.capacity}%"
-          )
-          (overlay
-            (label
-              :class "battery icon "
-              :text "${battery.bg}"
-            )
-            (label
-              :class "battery-bg icon ${battery.critical == "yes" ? "battery-critical" : ""}"
-              :text "${battery.icon}"
-            )
-          )
-        )
-        (overlay
-          (label
-            :class "wifi icon"
-            :text "${wifi.icon}"
-            ;;:halign "end"       ;; Use this to fix dumbass spacing issue
-          )
-          (label
-            :class "wifi icon"
-            :text "${wifi.bg}"
-            ;;:halign "end"       ;; Use this to fix dumbass spacing issue
-          )
-        )
-        (overlay
-          (label
-            :text "${volumeL.bg}"
-            :class "volume-bg"
-            :halign "end"       ;; Use this to fix dumbass spacing issue
-            :width 20
-          )
-
-          (label
-            :text "${volumeL.icon}"
-            :class "volume"
-            :halign "end"       ;; Use this to fix dumbass spacing issue
-            :width 20
-          )
-        )
+        (sprite)
+        (weather)
+        (cpu)
+        (memory)
+        (battery)
+        (wifi)
+        (volume)
       )
       (button
           :class "con"
-          :onclick "scripts/toggleCalendar.sh"
+          :onclick "scripts/toggleSystemMenu.sh"
           ""
       )
     )
@@ -229,7 +259,6 @@
     )
 )
 
-;; Right widgets
 
 
 
@@ -287,17 +316,115 @@
 
 )
 
+(defpoll brightness 
+  :interval "200ms"
+  "light -G"
+)
+
+
 ;; System menu
 
 (defwindow system_menu
   :monitor 0
   :windowtype "normal"
-  :geometry (geometry :x "0%"
-                      :y "0%"
-                      :width "30%"
-                      :height "30%"
+  :geometry (geometry :x "1%"
+                      :y "1%"
+                      :width "14%"
+                      :height "20%"
                       :anchor "top right")
-  (label
-  :text "blah blah"
+  (box
+    :class "system-menu-container"
+    :orientation "v"
+    :spacing 20
+    (box 
+      :class "system-stats"
+      :orientation "h"
+      (overlay
+        (cpu)
+        (circular-progress
+          :value 40
+          :thickness 6
+          ;;:dynamic true
+          :value "${EWW_CPU.avg}"
+        )
+      )
+      (overlay
+        (memory)
+        (circular-progress
+          :value 40
+          :thickness 6
+          ;;:dynamic true
+          :value "${memory}"
+        )
+
+      )
+    )
+    (box
+      :class "sliders"
+      :orientation "v"
+      :spacing 20
+      (box
+        :space-evenly false
+        (volume)
+        (scale
+          :hexpand true
+          :class "volume-slider"
+          :value "${volume.level}"
+          :min 0
+          :max 101
+          :onchange "pamixer --set-volume {}"
+        )
+      )
+      (box
+        :space-evenly false
+        (label
+          :text ""
+          :class "icon"
+        )
+        (scale
+          :hexpand true
+          :class "brightness-slider"
+          :value "${brightness}"
+          :min 0
+          :max 101
+          :onchange "light -S {}"
+        )
+      )
+    )
+    (box
+      :orientation "h"
+      :spacing 34
+      (box
+        :space-evenly false
+        :spacing 8
+        :class "menu-widget "
+        (wifi)
+        (label
+          :text "${wifi.ssid}"
+        )
+      )
+      (box
+        :class "bluetooth menu-widget"
+        :space-evenly false
+        :spacing 8
+        (label
+          :text ""
+        )
+      )
+    )
+    (box
+      :space-evenly false
+      :class "menu-widget"
+      :orientation "h"
+      (box
+        :class "pfp"
+        :width 60
+        :height 60
+      )
+      (label
+        :text "${user}" 
+      )
+    )
   )
 )
+

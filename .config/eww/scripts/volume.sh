@@ -2,6 +2,8 @@
 
 
 level=$(amixer -D pulse sget Master | grep 'Left:' | awk -F'[][]' '{ print $2 }' | tr -d '%' | head -1)
+# Bluetooth headset no worky ?
+#level=$(amixer -D pulse sget Master | grep 'Mono:' | awk -F'[][]' '{ print $2 }' | tr -d '%' | head -1)
 
 if (($level))
 then
@@ -21,4 +23,4 @@ else
 fi
 
 #echo -n $level
-echo "{\"icon\": \"${icon}\", \"bg\": \"${bg}\"}"
+echo "{\"icon\": \"${icon}\", \"bg\": \"${bg}\", \"level\": \"${level}\"}"

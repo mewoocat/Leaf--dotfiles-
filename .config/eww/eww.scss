@@ -127,6 +127,10 @@
     font-size: 26px;
 }
 
+.wifi-bg{
+   color: #444444; 
+}
+
 
 .window-name{
     padding-left: 14px;
@@ -165,4 +169,62 @@
     background-color: rgba(colors.$bg, 0.9);
     padding: 0px;
 
+}
+
+.system_menu{
+    border-radius: 10px;
+}
+
+.system-menu-container{
+    border-radius: 10px;
+    padding: 40px;
+    background-color: rgba(colors.$bg, 0.7);
+}
+
+.system-stats{
+    padding: 10px;
+    border-radius: 10px;
+    background-color: rgba(colors.$bg, 0.7);
+}
+
+.sliders{
+    padding: 10px;
+    border-radius: 10px;
+    background-color: rgba(colors.$bg, 0.7);
+}
+
+.sliders scale trough highlight {
+  all: unset;
+  background-color: #00ff00;
+  color: #000000;
+  border-radius: 10px;
+}
+.sliders scale trough {
+  all: unset;
+  background-color: #4e4e4e;
+  border-radius: 50px;
+  min-height: 20px;
+  min-width: 50px;
+  margin-left: 10px;
+  margin-right: 20px;
+}
+
+
+.menu-widget{
+    padding: 10px;
+    border-radius: 14px;
+    background-color: rgba(colors.$bg, 0.7);
+
+}
+
+// Derived from: https://github.com/Axarva/dotfiles-2.0/blob/main/config/eww-1920/eww.scss
+.pfp{
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 300px;
+    min-width: 60px;
+    min-height: 60px;
+    background-size: 60px;
+    margin: 8px;
+    background-image: url("/home/ghost/Pictures/zero.jpeg")
 }
