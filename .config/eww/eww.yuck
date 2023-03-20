@@ -321,6 +321,7 @@
   "light -G"
 )
 
+(defvar power_reveal false)
 
 ;; System menu
 
@@ -329,7 +330,7 @@
   :windowtype "normal"
   :geometry (geometry :x "1%"
                       :y "1%"
-                      :width "14%"
+                      :width "20%"
                       :height "20%"
                       :anchor "top right")
   (box
@@ -413,7 +414,7 @@
       )
     )
     (box
-      :space-evenly false
+      :space-evenly true
       :class "menu-widget"
       :orientation "h"
       (box
@@ -423,6 +424,25 @@
       )
       (label
         :text "${user}" 
+      )
+      (eventbox
+        :onhover "eww update power_reveal=true"
+        :onhoverlost "eww update power_reveal=false"
+        "ababa"
+      )
+      ;; could create toggle with "eww state" to get variable and then run a script to change value
+      (revealer
+        :reveal {power_reveal}
+        :transition "slideleft"
+        :duration "0ms"
+        (eventbox
+          :class "power button"
+          :halign "end"
+          :cursor "pointer"
+          ;;:width 20
+          ;;:height 20
+          "⏻"
+        )
       )
     )
   )

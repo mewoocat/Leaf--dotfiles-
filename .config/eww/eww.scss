@@ -177,7 +177,7 @@
 
 .system-menu-container{
     border-radius: 10px;
-    padding: 40px;
+    padding: 20px;
     background-color: rgba(colors.$bg, 0.7);
 }
 
@@ -221,10 +221,20 @@
 .pfp{
     background-position: center;
     background-repeat: no-repeat;
-    border-radius: 300px;
-    min-width: 60px;
-    min-height: 60px;
-    background-size: 60px;
-    margin: 8px;
+    border-radius: 50%;
+    //min-width: 40px;
+    //min-height: 40px;
+    background-size: 40px;
+    //margin-left: 40px;
     background-image: url("/home/ghost/Pictures/zero.jpeg")
+}
+
+.button{
+   font-size: 32px; 
+}
+
+.button:hover{
+    color: #00ff00;
+    //min-width: 30px;
+    //min-height: 30px;
 }
