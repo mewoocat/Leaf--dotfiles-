@@ -188,7 +188,7 @@
 }
 
 .sliders{
-    padding: 10px;
+    padding: 40px; // Doesn't work????
     border-radius: 10px;
     background-color: rgba(colors.$bg, 0.7);
 }
@@ -206,15 +206,22 @@
   min-height: 20px;
   min-width: 50px;
   margin-left: 10px;
-  margin-right: 20px;
+  //margin-right: 20px;
 }
 
 
 .menu-widget{
-    padding: 10px;
+    padding: 0px;
+    padding-left: 10px;
     border-radius: 14px;
-    background-color: rgba(colors.$bg, 0.7);
+    //backgrounmenu-widgetd-color: rgba(colors.$bg, 0.7);
+    background-color: rgba(#222222, 0.7);
+}
 
+// Doesn't work????
+.menu-widget:hover{
+    color: #00ff00;
+    background-color: #00ff00;
 }
 
 // Derived from: https://github.com/Axarva/dotfiles-2.0/blob/main/config/eww-1920/eww.scss
@@ -237,4 +244,12 @@
     color: #00ff00;
     //min-width: 30px;
     //min-height: 30px;
+}
+
+
+
+
+
+.brightness-icon{
+    font-size: 24px;
 }
