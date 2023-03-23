@@ -2,6 +2,10 @@
 
 ssid=$(iwgetid -r)
 
+if [[ $ssid == "" ]]; then
+    ssid="Disconnected"
+fi
+
 status=$(cat /proc/net/wireless | grep wlan0 | cut -d ' ' -f 6 | tr -d .)
 
 if (($status))

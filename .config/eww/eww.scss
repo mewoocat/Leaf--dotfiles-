@@ -211,18 +211,32 @@
 
 
 .menu-widget{
-    padding: 0px;
+    //padding: 8px 14px 8px 14px;
+    padding: 14px;
+    border-radius: 14px;
+    //backgrounmenu-widgetd-color: rgba(colors.$bg, 0.7);
+    background-color: rgba(#222222, 0.7);
+}
+
+.menu-button{
+    padding: 8px 14px 8px 14px;
     padding-left: 10px;
     border-radius: 14px;
     //backgrounmenu-widgetd-color: rgba(colors.$bg, 0.7);
     background-color: rgba(#222222, 0.7);
 }
 
-// Doesn't work????
-.menu-widget:hover{
-    color: #00ff00;
+
+.menu-button:hover{
+    //color: #00ff00;
     background-color: #00ff00;
+    background-color: rgba(#666666, 1);
 }
+
+.menu-button-active{
+    background-color: #ff0000;
+}
+
 
 // Derived from: https://github.com/Axarva/dotfiles-2.0/blob/main/config/eww-1920/eww.scss
 .pfp{
@@ -248,8 +262,15 @@
 
 
 
-
+.night-light{
+    //font-size: 100px;
+}
 
 .brightness-icon{
     font-size: 24px;
+}
+
+
+.circular-progress{
+    background-color: #000000; 
 }

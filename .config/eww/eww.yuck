@@ -244,7 +244,7 @@
         (workspaces_f)
         ;;(workspaces_test :halign "center" :vexpand true :hexpand false :orientation "h")
         (label 
-          :limit-width 20
+          :limit-width 30
           :class "window-name"
           :text "${window}")
     )
@@ -322,6 +322,7 @@
 )
 
 (defvar power_reveal false)
+(defvar night_light false)
 
 ;; System menu
 
@@ -331,33 +332,28 @@
   :geometry (geometry :x "1%"
                       :y "1%"
                       :width "20%"
-                      :height "20%"
+                      :height "0%"
                       :anchor "top right")
   (box
     :class "system-menu-container"
     :orientation "v"
     :spacing 20
+    :space-evenly false ;; Affects size of all child elements
     (box 
       :class "menu-widget"
+      :height 96
       :orientation "h"
-      (overlay
-        (cpu)
-        (circular-progress
-          :value 40
-          :thickness 10
-          ;;:dynamic true
-          :value "${EWW_CPU.avg}"
-        )
+      (cpu)
+      (circular-progress
+        :class "circular-progress"
+        :thickness 12
+        :value "${EWW_CPU.avg}"
       )
-      (overlay
-        (memory)
-        (circular-progress
-          :value 40
-          :thickness 10
-          ;;:dynamic true
-          :value "${memory}"
-        )
-
+      (memory)
+      (circular-progress
+        :class "circular-progress"
+        :thickness 12
+        :value "${memory}"
       )
     )
     (box
@@ -393,17 +389,21 @@
       )
     )
 
-    ;; Issue with widget height might be resolved with eliminating the box for each widget?
     (box
       :orientation "h"
       :spacing 34
-      (box
-        :space-evenly false
-        :spacing 8
-        :class "menu-widget "
-        (wifi)
-        (label
-          :text "${wifi.ssid}"
+      (eventbox
+          :class "menu-button"
+          :cursor "pointer"
+          :height 60
+        (box
+          :space-evenly false
+          :spacing 8
+          :class "menu-widget"
+          (wifi)
+          (label
+            :text "${wifi.ssid}"
+          )
         )
       )
       (box
@@ -418,14 +418,20 @@
     (box
       :orientation "h"
       :spacing 34
-      (box
-        :class "night-light menu-widget"
-        :space-evenly false
-        :spacing 0
-        :orientation "h"
-        (label
-          :class "icon"
-          :text ""
+      (eventbox
+          :class {night_light ? "menu-button menu-button-active" : "menu-button"}
+          :cursor "pointer"
+          :onclick {night_light ? "scripts/night_light.sh off" : "scripts/night_light.sh on"}
+          :height 60
+        (box
+          :class "night-light menu-widget"
+          :space-evenly false
+          :spacing 0
+          :orientation "h"
+          (label
+            :class "icon"
+            :text ""
+          )
         )
       )
       (box
@@ -468,6 +474,14 @@
           ;;:height 20
           "⏻"
         )
+      )
+      (eventbox
+        :class "power button"
+        :halign "end"
+        :cursor "pointer"
+        ;;:width 20
+        ;;:height 20
+        "⏻"
       )
     )
   )
