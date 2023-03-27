@@ -1,0 +1,17 @@
+(defwidget brightness_slider []
+  (box
+    :space-evenly false
+    (label
+      :text ""
+      :class "icon brightness-icon"
+    )
+    (scale
+      :hexpand true
+      :class "brightness-slider"
+      :value "${brightness}"
+      :min 1
+      :max 101
+      :onchange "light -S {}"
+    )
+  )
+)

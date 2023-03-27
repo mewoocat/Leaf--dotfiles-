@@ -1,0 +1,18 @@
+(defwidget bluetooth_button []
+  (eventbox
+    :class "menu-button"
+    :cursor "pointer"
+    :height 60
+    (box
+      :space-evenly false
+      :spacing 8
+      :class "menu-widget"
+      (label
+        :text ""
+      )
+    )
+  )
+)
+
+
+

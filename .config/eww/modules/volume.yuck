@@ -1,0 +1,14 @@
+(defwidget volume_slider []
+  (box
+    :space-evenly false
+    (volume)
+    (scale
+      :hexpand true
+      :class "volume-slider"
+      :value "${volume.level}"
+      :min 0
+      :max 101
+      :onchange "pamixer --set-volume {}"
+    )
+  )
+)
