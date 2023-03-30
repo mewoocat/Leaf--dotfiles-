@@ -323,6 +323,7 @@
 
 (defvar power_reveal false)
 (defvar night_light false)
+(defvar theme_light false)
 
 ;; System menu
 
@@ -334,12 +335,15 @@
   )
 )
 
+;; Module imports
 (include "modules/network.yuck")
 (include "modules/bluetooth.yuck")
 (include "modules/nightlight.yuck")
 (include "modules/theme.yuck")
 (include "modules/volume.yuck")
 (include "modules/brightness.yuck")
+(include "modules/system_stats.yuck")
+(include "modules/battery.yuck")
 
 (defwindow system_menu
   :monitor 0
@@ -354,30 +358,9 @@
     :orientation "v"
     :spacing 20
     :space-evenly false ;; Affects size of all child elements
-    (box 
-      :class "menu-widget"
-      :height 116
-      :orientation "h"
-      (box
-        :orientation "v"
-        (circular-progress
-          :class "circular-progress"
-          :thickness 12
-          :value "${EWW_CPU.avg}"
-        )
-        (cpu)
-      )
-      (box
-        :orientation "v"
-        (circular-progress
-          :class "circular-progress"
-          :thickness 12
-          :value "${memory}"
-        )
-        (memory)
-      )
-    )
     ;; Sliders
+    (system_stats)
+    (battery_stats)
     (box
       :class "menu-widget sliders"
       :orientation "v"

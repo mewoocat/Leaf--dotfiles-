@@ -1,9 +1,9 @@
 (defwidget theme_button []
   (eventbox
     :class "menu-button"
-    ;;:class {night_light ? "menu-button menu-button-active" : "menu-button"}
+    :class {theme_light ? "menu-button menu-button-active" : "menu-button"}
     :cursor "pointer"
-    ;;:onclick {night_light ? "scripts/night_light.sh off" : "scripts/night_light.sh on"}
+    :onclick {theme_light ? "ls & ~/.scripts/theme.sh -d" : "ls & ~/.scripts/theme.sh -l" theme_light ? "eww update theme_light=false" : "eww update theme_light=true"}
     :height 60
     (box
       :space-evenly false

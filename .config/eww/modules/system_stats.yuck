@@ -1,0 +1,25 @@
+(defwidget system_stats []
+  (box
+    :class "menu-widget"
+    :height 116
+    :orientation "h"
+    (box
+      :orientation "v"
+      (circular-progress
+        :class "circular-progress"
+        :thickness 12
+        :value "${EWW_CPU.avg}"
+      )
+      (cpu)
+    )
+    (box
+      :orientation "v"
+      (circular-progress
+        :class "circular-progress"
+        :thickness 12
+        :value "${memory}"
+      )
+      (memory)
+    )
+  )
+)
