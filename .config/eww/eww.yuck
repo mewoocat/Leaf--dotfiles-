@@ -140,6 +140,24 @@
   )
 ) 
 
+(defwidget cpu_temp []
+  (label
+    :text " ${temp}°C"
+    :class "icon"
+    ;;:halign "end"       ;; Use this to fix dumbass spacing issue
+    :width 0
+  )
+)
+
+(defwidget cpu_usage []
+  (label
+    :text " ${round(EWW_CPU.avg, 0)}%"
+    :class "icon"
+    ;;:halign "end"       ;; Use this to fix dumbass spacing issue
+    :width 0
+  )
+)
+
 (defwidget memory []
   (label
     :text " ${memory}%"
@@ -219,6 +237,7 @@
       )
       (button
           :class "con"
+          :timeout "0.15s"
           :onclick "scripts/toggleSystemMenu.sh"
           ""
       )
@@ -320,6 +339,8 @@
   :interval "200ms"
   "light -G"
 )
+
+;;(defpoll get_theme_light :interval "200ms" "cat theme_light")
 
 (defvar power_reveal false)
 (defvar night_light false)

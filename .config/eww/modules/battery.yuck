@@ -1,19 +1,24 @@
 (defpoll battery_status
   :interval "1s"
-  "acpi"
+  "scripts/battery_status.sh"
 )
 
 (defwidget battery_stats []
   (box
     :class "menu-widget"
-    :height 116
+    :height 126
     :orientation "h"
     (box
-      :orientation "v"
-      (circular-progress
-        :class "circular-progress"
-        :thickness 12
-        :value "${EWW_BATTERY.BAT0.capacity}"
+      :orientation "h"
+      (overlay
+        (circular-progress
+          :class "battery-bg circular-progress ${battery.critical == "yes" ? "battery-critical" : ""}"
+          :thickness 14
+          :value "${EWW_BATTERY.BAT0.capacity}"
+        )
+        (label
+          :text "${EWW_BATTERY.BAT0.capacity}%"
+        )
       )
       (label
         :text "${battery_status}" 
