@@ -3,12 +3,13 @@
     :class "menu-button"
     :cursor "pointer"
     :height 60
+    :onclick "scripts/toggleBluetooth.sh"
     (box
       :space-evenly false
       :spacing 8
       :class "menu-widget"
       (label
-        :text ""
+        :text {bluetoothPower ? "" : ""}
       )
     )
   )

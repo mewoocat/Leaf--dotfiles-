@@ -2,6 +2,7 @@
   (eventbox
     :class "menu-button"
     :cursor "pointer"
+    :onclick "scripts/toggleWifiMenu.sh"
     :height 60
     (box
       :space-evenly false

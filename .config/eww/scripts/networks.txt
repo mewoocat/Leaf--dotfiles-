@@ -1,0 +1,15 @@
+ :D6\:AB\:CD\:12\:15\:03::Infra:149:130 Mbit/s:100:****:WPA2
+ :46\:07\:0B\:16\:72\:70:Google Wi-Fi-guest:Infra:149:270 Mbit/s:79:*** :WPA2
+ :08\:02\:8E\:FD\:88\:1C:ARLO_VMB_1600032682:Infra:6:52 Mbit/s:77:*** :WPA2
+ :44\:07\:0B\:16\:72\:74:Google Wi-Fi:Infra:11:130 Mbit/s:77:*** :WPA2
+ :46\:07\:0B\:16\:72\:74:Google Wi-Fi-guest:Infra:11:130 Mbit/s:75:*** :WPA2
+ :0C\:CB\:85\:FF\:18\:E0:MOTO8D52-5G:Infra:36:405 Mbit/s:72:*** :WPA2
+*:44\:07\:0B\:16\:72\:70:Google Wi-Fi:Infra:149:270 Mbit/s:69:*** :WPA2
+ :0C\:CB\:85\:FF\:18\:DF:MOTO8D52:Infra:6:130 Mbit/s:65:*** :WPA2
+ :B0\:2A\:43\:C3\:17\:62:Google Wi-Fi:Infra:6:130 Mbit/s:64:*** :WPA2
+ :B2\:2A\:43\:C3\:17\:60:Google Wi-Fi-guest:Infra:6:130 Mbit/s:62:*** :WPA2
+ :B2\:2A\:43\:C3\:17\:5C:Google Wi-Fi-guest:Infra:149:270 Mbit/s:60:*** :WPA2
+ :B0\:2A\:43\:C3\:17\:5E:Google Wi-Fi:Infra:149:270 Mbit/s:60:*** :WPA2
+ :88\:DE\:A9\:69\:81\:05::Infra:149:130 Mbit/s:39:**  :WPA2
+ :B0\:2A\:43\:C3\:16\:FB:Google Wi-Fi:Infra:149:270 Mbit/s:30:*   :WPA2
+ :B2\:2A\:43\:C3\:16\:F8:Google Wi-Fi-guest:Infra:149:270 Mbit/s:29:*   :WPA2

@@ -2,11 +2,18 @@
 
 function handle {
   if [[ ${1:0:12} == "monitoradded" ]]; then
-    hyprctl dispatch moveworkspacetomonitor "1 1"
-    hyprctl dispatch moveworkspacetomonitor "2 1"
-    hyprctl dispatch moveworkspacetomonitor "4 1"
-    hyprctl dispatch moveworkspacetomonitor "5 1"
-    swww img ~/.config/wallpaper.jpg
+    hyprctl dispatch moveworkspacetomonitor "1 0"
+    hyprctl dispatch moveworkspacetomonitor "2 0"
+    hyprctl dispatch moveworkspacetomonitor "3 0"
+    hyprctl dispatch moveworkspacetomonitor "4 0"
+    hyprctl dispatch moveworkspacetomonitor "5 0"
+    hyprctl dispatch moveworkspacetomonitor "6 1"
+    hyprctl dispatch moveworkspacetomonitor "7 1"
+    hyprctl dispatch moveworkspacetomonitor "8 1"
+    hyprctl dispatch moveworkspacetomonitor "9 1"
+    hyprctl dispatch moveworkspacetomonitor "10 1"
+    #swww img ~/.config/wallpaper.jpg
+    ./.scripts/theme.sh -w
   fi
 }
 

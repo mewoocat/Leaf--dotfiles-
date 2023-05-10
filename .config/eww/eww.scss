@@ -15,6 +15,10 @@
    // filter: blur(5px);
 }
 
+.system_menu{
+    color: colors.$fg;
+}
+
 .bar_external {
   background-color: rgba(colors.$bg, 0.8);
   color: colors.$fg;
@@ -27,20 +31,34 @@
 .container{
     padding: 0px;
     padding-left: 0px;
+}
 
+.button-box{
+    padding: 6px;
+    //background-color: #ff00ff;
+    
 }
 
 .launcher {
-    padding-left: 14px;
-    padding-right: 14px;
+    padding-left: 20px;
+    padding-right: 20px;
     font-size: 28px;
     margin-left: 8px;
+    border-radius: 50px;
 }
 
-.launcher:hover {
-    color: colors.$bg;
-    background-color: colors.$fg;
+.launcher-hover{
+    color: colors.$fg;
+    background-color: rgb(colors.$fg_alt, 0.4);
 }
+
+// using eventbox hover instead
+/*
+.launcher:hover {
+    color: colors.$fg;
+    background-color: rgb(colors.$fg_alt, 0.4);
+}
+*/
 
 
 .ws-button{
@@ -69,7 +87,7 @@
 
 
 .dot{
-    color: #00ff00;
+    color: #ffff00;
     border-radius: 0%;
     padding: 0;
     margin: 0;
@@ -84,8 +102,14 @@
 }
 
 .con:hover{
-    color: #ff0000;
-    background-color: rgba(#2a2a2a, 0.8);
+    color: colors.$fg;
+    background-color: rgb(colors.$fg_alt, 0.4);
+}
+
+
+
+.menu-toggle-button{
+
 }
 
 .workspaces {
@@ -98,37 +122,48 @@
 }
 
 .empty{
-    color: #444444;
+    color: colors.$bg_alt;
     font-size: 14px;
 }
 
 .empty:hover{
-    color: #00ff00;
+    color: colors.$color2;
     font-size: 20px;
 }
 
 .occupied{
-    color: #ff9f00;
-    font-size: 20px;
+    color: colors.$color3;
+    font-size: 22px;
 }
 
 .occupied:hover{
-    color: #00ff00;
+    color: colors.$color2;
 }
 
 
 .current{
-    color: #00ff3a;
-    font-size: 20px;
+    color: colors.$color2;
+    font-size: 26px;
+}
+
+.current:hover{
+    color: colors.$color2;
+    font-size: 26px;
+}
+
+
+.ws-box{
+    background-color: #ff0000;
+    border-radius: 50%;
 }
 
 
 .wifi{
-    font-size: 26px;
+    font-size: 24px;
 }
 
 .wifi-bg{
-   color: #444444; 
+   color: colors.$fg_alt; 
 }
 
 
@@ -137,11 +172,11 @@
 }
 
 .battery{
-    font-size: 26px;
+    font-size: 22px;
 }
 
 .battery-bg{
-    font-size: 26px;
+    font-size: 22px;
     color: #00ff00;
 }
 
@@ -151,13 +186,13 @@
 
 .volume{
     font-family: "icon_font";
-    font-size: 24px;
+    font-size: 22px;
 }
 
 .volume-bg{
     font-family: "icon_font";
-    font-size: 24px;
-    color: #444444;
+    font-size: 22px;
+    color: colors.$fg_alt;
 }
 
 .icon{
@@ -195,15 +230,15 @@
 
 .sliders scale trough highlight {
   all: unset;
-  background-color: #00ff00;
+  background-color: colors.$color3;
   color: #000000;
-  border-radius: 10px;
+  border-radius: 20px;
 }
 .sliders scale trough {
   all: unset;
-  background-color: #4e4e4e;
-  border-radius: 50px;
-  min-height: 20px;
+  background-color: colors.$bg;
+  border-radius: 80px;
+  min-height: 30px;
   min-width: 50px;
   margin-left: 10px;
   //margin-right: 20px;
@@ -215,7 +250,7 @@
     padding: 14px;
     border-radius: 14px;
     //backgrounmenu-widgetd-color: rgba(colors.$bg, 0.7);
-    background-color: rgba(#222222, 0.7);
+    background-color: rgba(colors.$bg_alt, 0.4);
 }
 
 .menu-button{
@@ -223,7 +258,7 @@
     padding-left: 10px;
     border-radius: 14px;
     //backgrounmenu-widgetd-color: rgba(colors.$bg, 0.7);
-    background-color: rgba(#222222, 0.7);
+    background-color: rgba(colors.$bg_alt, 0.3);
 }
 
 
@@ -272,6 +307,87 @@
 
 
 .circular-progress{
-    background-color: #000000; 
+    background-color: colors.$bg; 
+    color: colors.$color2; 
+}
+
+
+.circular-progress-cpu{
     color: colors.$color1; 
+}
+
+.circular-progress-mem{
+    color: colors.$color4; 
+}
+
+
+.cpu-icon{
+    color: colors.$color1
+}
+
+.mem-icon{
+    color: colors.$color4
+}
+
+.sub-menu-label{
+    font-size: 18px;
+    padding: 10px;
+}
+
+.wifi-network{
+    padding: 8px;
+    //padding-left: 0px;
+    //border-radius: 14px;
+    //backgrounmenu-widgetd-color: rgba(colors.$bg, 0.7);
+    //background-color: rgba(colors.$bg_alt, 0.3);
+    //margin: 10;
+}
+
+.wifi-network:hover{
+    //color: #00ff00;
+    background-color: #00ff00;
+    background-color: rgba(#666666, 1);
+}
+
+.wifi-network-label{
+    padding: 8px;
+}
+
+
+.back-button{
+    font-size: 18px;
+    //margin: 8px;
+    padding: 2px;
+    border-radius: 50px;
+}
+
+.back-button:hover{
+    color: colors.$fg;
+    background-color: rgb(colors.$fg_alt, 0.4);
+}
+
+.wifi-ssid{
+    font-size: 18px;
+    padding: 0px;
+    margin-right: 18px;
+}
+
+.horizontal-line{
+    background-color: colors.$bg_alt;
+}
+
+.password-container{
+    margin: 10px;
+}
+
+.password-entry{
+    padding: 8px;
+    border-radius: 50px;
+    background-color: rgb(colors.$bg_alt, 0.5);
+    color: colors.$fg;
+}
+
+.bluetooth-label{
+    //padding: 4px;
+    font-size: 18px;
 }

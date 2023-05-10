@@ -5,7 +5,7 @@
     (scale
       :hexpand true
       :class "volume-slider"
-      :value "${volume.level}"
+      :value "${volumeL.level}"
       :min 0
       :max 101
       :onchange "pamixer --set-volume {}"

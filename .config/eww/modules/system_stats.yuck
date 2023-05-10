@@ -6,7 +6,7 @@
     (overlay
       :orientation "v"
       (circular-progress
-        :class "circular-progress"
+        :class "circular-progress circular-progress-cpu"
         :thickness 14
         :value "${EWW_CPU.avg}"
       )
@@ -15,7 +15,7 @@
     (overlay
       :orientation "v"
       (circular-progress
-        :class "circular-progress"
+        :class "circular-progress circular-progress-mem"
         :thickness 14
         :value "${memory}"
       )
