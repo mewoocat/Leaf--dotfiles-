@@ -1,15 +1,20 @@
 (defwidget bluetooth_button []
   (eventbox
-    :class "menu-button"
+    :class {bluetoothPower ? "menu-button bluetooth-on" : "menu-button"}
     :cursor "pointer"
-    :height 60
+    :height 72
+    :width 72
     :onclick "scripts/toggleBluetooth.sh"
     (box
-      :space-evenly false
-      :spacing 8
-      :class "menu-widget"
+      ;;:class {bluetoothPower ? "bluetooth-on" : ""}
+      ;;:space-evenly false
+      ;;:spacing 8
+      ;;:class "menu-widget"
+      :valign "center"
+      :halign "center"
       (label
-        :text {bluetoothPower ? "" : ""}
+        :style "font-size: 20px;"
+        :text {bluetoothPower ? "" : ""} ;;
       )
     )
   )

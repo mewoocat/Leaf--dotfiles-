@@ -1,0 +1,19 @@
+(defwidget microphone_slider []
+  (box
+    :space-evenly false
+    (label
+      :text "${microphone.icon}"
+      :class "mic"
+      :width 24
+    )
+    (scale
+      :hexpand true
+      :class "volume-slider"
+      :value "${microphone.level}"
+      :min 0
+      :max 101
+      :onchange "amixer set Capture {}% unmute"
+    )
+  )
+)
+

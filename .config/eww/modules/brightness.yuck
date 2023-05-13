@@ -4,6 +4,7 @@
     (label
       :text ""
       :class "icon brightness-icon"
+      :width 20
     )
     (scale
       :hexpand true

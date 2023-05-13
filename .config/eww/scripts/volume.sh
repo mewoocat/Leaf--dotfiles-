@@ -7,6 +7,7 @@ level=$(amixer -D pulse sget Master | grep 'Left:' | awk -F'[][]' '{ print $2 }'
 
 if (($level))
 then
+    mute=false
     if (($level > 75)); then
         icon=$(echo -e "")
     elif (($level > 50)); then
@@ -18,9 +19,10 @@ then
     fi
     bg=$(echo -e "")
 else
+    mute=true
     icon=$(echo -e "")
     bg=$(echo -e "")
 fi
 
 #echo -n $level
-echo "{\"icon\": \"${icon}\", \"bg\": \"${bg}\", \"level\": \"${level}\"}"
+echo "{\"icon\": \"${icon}\", \"bg\": \"${bg}\", \"level\": \"${level}\", \"mute\": \"${mute}\"}"

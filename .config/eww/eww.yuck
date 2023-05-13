@@ -1,4 +1,4 @@
-
+;;
 
 ;; Dot
 (defwidget dot []
@@ -15,16 +15,22 @@
 (defvar launcher_hover false)
 (defwidget launcher []
   (eventbox
+    ;;:timeout "0ms"
     :cursor "pointer"
-    :onclick "~/.config/rofi/launch.sh"
+    :onclick "bash ~/.config/rofi/launch.sh &"
     :onhover "eww update launcher_hover=true"
     :onhoverlost "eww update launcher_hover=false"
+    :width 80
     (box
       :class "button-box"
-      (button
+      (box
+        :class "launcher-hover"
         :class {launcher_hover ? "launcher launcher-hover" : "launcher"}
         ;;:style {launcher_hover ? "background-color: #0f0f0f" : ""}
-        ;;:timeout 1
+        ;;:timeout "100ms"
+        ;;:onclick "bash ~/.config/rofi/launch.sh &"
+
+        ;;:onclick "~/.config/eww/scripts/toggleSystemMenu.sh"
         "";;"𝄞"
       )
     )
@@ -32,7 +38,7 @@
 )
 
 ;; Workspaces
-
+;; extra icons:  
 (deflisten workspace "./scripts/workspaces_f")
 (defwidget workspaces_f []
   (eventbox
@@ -81,11 +87,38 @@
     "date '+%B %e   %l:%M %P'"
 )
 
+
+
+
+;; Center widgets
+
+(defvar calendarOpen false)
+(defvar time_hover false)
 (defwidget time []
-    (label
-      :text "${time}"
+  (eventbox
+      :cursor "pointer"
+      :onclick {calendarOpen ? "eww close calendar; eww update calendarOpen=false" : "eww open calendar; eww update calendarOpen=true"}
+      :onhover "eww update time_hover=true"
+      :onhoverlost "eww update time_hover=false"
+    (box
+      :class "button-box"
+      (label
+        :class {time_hover ? "time-button time-button-hover" : "time-button"} 
+        :text "${time}"
+      )
     )
+  )
 )
+
+(defwidget center []
+    ;;(eventbox
+    ;;    :cursor "pointer"
+    ;;    :onclick {calendarOpen ? "eww close calendar; eww update calendarOpen=false" : "eww open calendar; eww update calendarOpen=true"}
+    ;;    :halign "center"
+        (time)
+    ;;)
+)
+
 
 ;; Volume
 
@@ -94,6 +127,11 @@
 ;;  "scripts/volume.sh"
 ;;)
 (deflisten volumeL "./scripts/checkVolume.sh")
+;;(defvar mute true)
+(deflisten microphone "./scripts/checkMicrophone.sh")
+
+;;(deflisten mute {volumeL.mute})
+
 
 ;; Temperature
 (defpoll temp
@@ -242,7 +280,7 @@
 
     (label
       :text "${volumeL.icon}"
-      :class "volume"
+      :class {volumeL.mute == "true" ? "volume off" : "volume"}
       ;;:halign "end"       ;; Use this to fix dumbass spacing issue
       :width 20
     )
@@ -258,22 +296,24 @@
   ;; bluetooth power on/off
   (label
     :width 16
-    :class "bluetooth-label"
+    :class {bluetoothPower ? "bluetooth-label" : "bluetooth-label bluetooth-off"}
     :text {bluetoothPower ? "" : ""}
   )
 )
 
+(defvar system_menu_button_hover false)
 
 ;; Right widgets
 (defwidget right []
     (box
         :halign "end"
         :space-evenly false
+        :spacing 10
       (box
         :spacing 20
         :halign "end"
         :space-evenly false
-        (sprite)
+        ;;(sprite)
         ;;(weather)
         (cpu)
         (memory)
@@ -284,11 +324,19 @@
       )
       (eventbox
         :cursor "pointer"
-        (button
-            :class "con"
-            :timeout "0.05s"
-            :onclick "scripts/toggleSystemMenu.sh"
-            ""
+        :onclick "scripts/toggleSystemMenu.sh"
+        :onhover "eww update system_menu_button_hover=true"
+        :onhoverlost "eww update system_menu_button_hover=false"
+        :width 80
+        (box
+          :class "button-box"
+          (button
+              ;;:class "con"
+              :class {system_menu_button_hover ? "con con-hover" : "con"}
+              ;;:timeout "0.05s"
+              :onclick "scripts/toggleSystemMenu.sh"
+              "";;""
+          )
         )
       )
     )
@@ -319,14 +367,7 @@
     )
 )
 
-;; Center widgets
 
-(defwidget center []
-    (box
-        :halign "center"
-        (time)
-    )
-)
 
 
 
@@ -374,15 +415,18 @@
 ;; Calendar
 
 (defwindow calendar
-  :monitor 0
-  :windowtype "dock"
+  :monitor 0 
+  :windowtype "normal"
   :geometry (geometry :x "0%"
-                      :y "0%"
-                      :width "20%"
-                      :height "20%"
+                      :y "1%"
+                      ;;:width "20%"
+                      ;;:height "24%"
                       :anchor "top center")
-  (calendar
-    :class "calendar"
+  (box
+  
+    :class "calendar-widget"
+    (calendar
+    )
   )
 
 )
@@ -415,15 +459,20 @@
   )
 )
 
+
+
 ;; Module imports
 (include "modules/network.yuck")
 (include "modules/bluetooth.yuck")
 (include "modules/nightlight.yuck")
 (include "modules/theme.yuck")
 (include "modules/volume.yuck")
+(include "modules/microphone.yuck")
 (include "modules/brightness.yuck")
 (include "modules/system_stats.yuck")
 (include "modules/battery.yuck")
+(include "modules/display.yuck")
+(include "modules/keyboard.yuck")
 
 (defpoll wifi_scan
   :interval "5s"
@@ -523,14 +572,22 @@
       :orientation "v"
       :spacing 20
       (volume_slider)
+      (microphone_slider)
       (brightness_slider)
     )
     ;; Menu button row 1
     (box
       :orientation "h"
-      :spacing 34
+      :spacing 10
+      ;;:space-evenly false
       (network_button)
-      (bluetooth_button)
+      (box
+        ;;:space-evenly false
+        :spacing 10
+        ;;:width "100%"
+        (bluetooth_button)
+        (nightlight_button)
+      )
     )
 
 
@@ -538,50 +595,102 @@
     ;; Menu buttons row 2
     (box
       :orientation "h"
-      :spacing 34
-      (nightlight_button)
-      (theme_button)
+      :spacing 10
+      ;;:space-evenly false
+      (box
+        :spacing 10
+        (keyboard_button)
+        (theme_button)
+      )
+      (display)
     )
 
     ;; Bottom row
-    (box
-      :space-evenly true
-      :class "menu-widget"
+    (centerbox
+      :space-evenly false
+      :class "menu-widget bottom"
       :orientation "h"
+      :height 80
       (box
-        :class "pfp"
-        :width 60
-        :height 60
+        :orientation "h"
+        :space-evenly false
+        :spacing 12
+        (box
+          :class "pfp"
+          ;;:width 60
+          ;;:height 60
+        )
+        (label
+          :halign "end"
+          :text "${user}\\n@scythe" 
+          :style "font-size: 16px;"
+        )
       )
-      (label
-        :text "${user}" 
-      )
-      (eventbox
-        :onhover "eww update power_reveal=true"
-        :onhoverlost "eww update power_reveal=false"
-        "ababa"
-      )
+      ;;(eventbox
+      ;; :onhover "eww update power_reveal=true"
+      ;;  :onhoverlost "eww update power_reveal=false"
+      ;;  "ababa"
+      ;;)
       ;; could create toggle with "eww state" to get variable and then run a script to change value
-      (revealer
-        :reveal {power_reveal}
-        :transition "slideleft"
-        :duration "0ms"
+      (label :text "") 
+      (box
+        :space-evenly false
+        :spacing 4
+        :halign "end" 
+        :class "bottom-row"
+        (eventbox
+          ;;:onhover "eww update power_reveal=true"
+          ;;:onhoverlost "eww update power_reveal=false"
+          (revealer
+            :reveal {power_reveal}
+            :transition "slideleft"
+            :duration "100ms"
+            (box
+              :space-evenly false
+              :spacing 4
+              :style "padding: 6px;"
+              (eventbox
+                :class "power-button power-off"
+                :halign "end"
+                :cursor "pointer"
+                :width 44
+                :height 44
+                "⏼"
+              )
+              (eventbox
+                :class "power-button lock"
+                :halign "end"
+                :cursor "pointer"
+                :width 44
+                :height 44
+                :onclick "~/.scripts/swaylockenv.sh"
+                ""
+              )
+              (eventbox
+                :class "power-button restart"
+                :halign "end"
+                :cursor "pointer"
+                :width 44
+                :height 44
+                (label
+                  :text ""
+                )
+              )
+              "｜"
+            )
+          )
+        )
         (eventbox
           :class "power button"
           :halign "end"
           :cursor "pointer"
+          ;;:onhover "eww update power_reveal=true"
+          :onclick {power_reveal ? "eww update power_reveal=false" : "eww update power_reveal=true"}
+          ;;:onhoverlost "eww update power_reveal=false"
           ;;:width 20
           ;;:height 20
           "⏻"
         )
-      )
-      (eventbox
-        :class "power button"
-        :halign "end"
-        :cursor "pointer"
-        ;;:width 20
-        ;;:height 20
-        "⏻"
       )
     )
   )
@@ -594,7 +703,7 @@
   :focusable false
   :geometry (geometry :x "1%"
                       :y "1%"
-                      :width "22%"
+                      :width "260px"
                       :height "0%"
                       :anchor "top right")
   ;;(literal

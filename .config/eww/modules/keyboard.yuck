@@ -1,8 +1,8 @@
-(defwidget nightlight_button []
+(defwidget keyboard_button []
   (eventbox
     :class {night_light ? "menu-button menu-button-active" : "menu-button"}
     :cursor "pointer"
-    :onclick {night_light ? "scripts/night_light.sh off" : "scripts/night_light.sh on"}
+    ;;:onclick {night_light ? "scripts/night_light.sh off" : "scripts/night_light.sh on"}
     :height 72
     :width 72
     :halign "end"
@@ -14,11 +14,11 @@
       :valign "center"
       (label
         :class "icon"
-        :style "font-size: 20px;"
-        :text ""
+        :style "font-size: 44px;"
+        ;;:style "font-size: 20px;"
+        :text ""
       )
     )
   )
 )
-
 

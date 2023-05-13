@@ -7,12 +7,15 @@
     :onclick "ls & ~/.scripts/theme.sh -T" ;; No clue why but without some command e.g. "ls", and "&" the theme script will only update the terminal
     :height 60
     (box
+      :valign "center"
+      :halign "center"
       :space-evenly false
       :spacing 8
-      :class "menu-widget"
+      ;;:class "menu-widget"
       (label
         :class "icon"
-        :text "Theme"
+        :style "font-size: 32px"
+        :text ""
       )
     )
   )

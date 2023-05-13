@@ -39,10 +39,12 @@ wallpaper_dark="/home/ghost/wallpapers/pexels-irina-iriser-837453.jpg"
 wallpaper_dark="/home/ghost/wallpapers/pexels-irina-iriser-837453.jpg"
 wallpaper_dark="/home/ghost/wallpapers/pexels-sebastian-sørensen-1276518.jpg"
 wallpaper_light="/home/ghost/wallpapers/isn8l7lknxua1.png"
-wallpaper_light="/home/ghost/wallpapers/pexels-daniel-frese-1055379.jpg"
+wallpaper_light="/home/ghost/wallpapers/10-13.jpg"
 wallpaper_dark="/home/ghost/wallpapers/isn8l7lknxua1.png"
 wallpaper_dark="/home/ghost/wallpapers/pexels-peter-fazekas-1089462.jpg"
 wallpaper_dark="/home/ghost/wallpapers/pexels-daniel-frese-1055379.jpg"
+wallpaper_dark="/home/ghost/wallpapers/pexels-lumn-167698.jpg"
+wallpaper_dark="/home/ghost/wallpapers/0301.jpg"
 
 theme_colors="base16-3024"
 #theme_colors_light="base16-atelier-dune"
@@ -59,7 +61,9 @@ theme_colors_dark="base16-3024"
 theme_colors_dark="base16-chalk"
 theme_colors_dark="base16-atelier-seaside"
 theme_colors_dark="base16-gruvbox-hard"
-theme_colors_light="base16-gruvbox-hard"
+theme_colors_light="base16-google"
+theme_colors_dark="base16-google"
+theme_colors_dark="base16-chalk"
 
 gtk_light_theme="Mojave-Light"
 gtk_dark_theme="Mojave-Dark"
@@ -172,7 +176,7 @@ function setEWWColors(){
 
     echo -e "$text" > ~/.config/rofi/theme.rasi
 
-    eww reload;
+    #eww reload;
 }
 
 function setRofiColors(){
@@ -197,6 +201,8 @@ function setLight(){
     wal -l --theme $theme_colors_light; 
     gsettings set org.gnome.desktop.interface gtk-theme $gtk_light_theme;
     swww img $wallpaper_light;
+        :width 500
+        :width 500
     setEWWColors light;
     #killall eww && killall eww && eww open bar;
     echo $wallpaper_light > ~/.config/wallpaper;
@@ -313,6 +319,12 @@ do
 		
     esac
 done
+
+currentWallpaper=$(cat ~/.config/wallpaper)
+# From https://www.reddit.com/r/swaywm/comments/gx1rbf/fancy_custom_swaylock_background_image/
+#convert -filter Gaussian -resize 20% -blur 0x2.5 -resize 500% $currentWallpaper ~/.config/lockscreen.png
+#convert $currentWallpaper -filter Gaussian -blur 0x8 ~/.config/lockscreen.png
+
 
 if [ $theme == true ]; then
 	# sets gtk theme colors

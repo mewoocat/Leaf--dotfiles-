@@ -21,7 +21,7 @@
         )
       )
       (label
-        :text "${battery_status}" 
+        :text "${battery_status}" 
       )
     )
   )
