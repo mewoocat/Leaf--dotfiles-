@@ -1,3 +1,17 @@
+(defpoll bluetoothPower 
+  :interval "1s"
+  "scripts/getBluetooth.sh"
+)
+
+(defwidget bluetooth []
+  ;; bluetooth power on/off
+  (label
+    :width 16
+    :class {bluetoothPower ? "bluetooth-label" : "bluetooth-label bluetooth-off"}
+    :text {bluetoothPower ? "" : ""}
+  )
+)
+
 (defwidget bluetooth_button []
   (eventbox
     :class {bluetoothPower ? "menu-button bluetooth-on" : "menu-button"}

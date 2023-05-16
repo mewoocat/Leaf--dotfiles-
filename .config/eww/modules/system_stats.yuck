@@ -1,25 +1,116 @@
+;; Temperature
+(defpoll temp
+    :interval "2s"
+    "scripts/getTemp.sh"
+)
+
+(defpoll memory
+  :interval "1s"
+  "scripts/mem.sh"
+)
+
+
+(defwidget cpu []
+  (box
+    :space-evenly false
+    (label
+      :class "icon cpu-icon"
+      :text " "
+    )
+    (label
+      :text "${temp}°C | ${round(EWW_CPU.avg, 0)}%"
+      :class "icon"
+      ;;:halign "end"       ;; Use this to fix dumbass spacing issue
+      :width 0
+    )
+  )
+) 
+
+(defwidget cpu_temp []
+  (label
+    :text " ${temp}°C"
+    :class "icon"
+    ;;:halign "end"       ;; Use this to fix dumbass spacing issue
+    :width 0
+  )
+)
+
+(defwidget cpu_usage []
+  (label
+    :text " ${round(EWW_CPU.avg, 0)}%"
+    :class "icon"
+    ;;:halign "end"       ;; Use this to fix dumbass spacing issue
+    :width 0
+  )
+)
+
+(defwidget cpu_icon []
+  (label
+    :class "icon"
+    :text ""
+  )
+)
+
+(defwidget memory []
+  (box 
+    :halign "center"
+    :space-evenly false
+    (label
+      :class "icon mem-icon"
+      :text " " 
+    )
+    (label
+      :text "${memory}%"
+      :class "icon"
+    )
+  )
+) 
+
 (defwidget system_stats []
   (box
-    :class "menu-widget"
-    :height 126
+    ;;:class "menu-widget"
+    ;;:height 72
     :orientation "h"
-    (overlay
-      :orientation "v"
-      (circular-progress
-        :class "circular-progress circular-progress-cpu"
-        :thickness 14
-        :value "${EWW_CPU.avg}"
+
+    :space-evenly false
+    :spacing 10
+    ;; cpu
+    (eventbox
+      :class "menu-button stat"
+      ;;:cursor "pointer"
+      ;;:onclick "scripts/toggleWifiMenu.sh"
+      :height 72
+      :width 72
+      (overlay
+        :orientation "v"
+        (circular-progress
+          :class "circular-progress circular-progress-cpu stat"
+          :thickness 8
+          :value "${EWW_CPU.avg}"
+        )
+        ;;(cpu_usage)
+        (cpu_icon)
       )
-      (cpu_usage)
     )
-    (overlay
-      :orientation "v"
-      (circular-progress
-        :class "circular-progress circular-progress-mem"
-        :thickness 14
-        :value "${memory}"
+    (eventbox
+      :class "menu-button"
+      :height 72
+      :width 72
+      (overlay
+        :orientation "v"
+        (circular-progress
+          :class "circular-progress circular-progress-mem stat"
+          :thickness 8
+          :value "${memory}"
+        )
+        ;;(memory)
+        (
+          label
+          :class "icon mem-icon"
+          :text "" 
+        )
       )
-      (memory)
     )
+    (battery_stats_v2)
   )
 )

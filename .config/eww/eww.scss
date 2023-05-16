@@ -7,7 +7,7 @@
 
 //Global Styles
 .bar {
-  background-color: rgba(colors.$bg, 0.8);
+  background-color: rgba(colors.$bg, 0.6);
   color: colors.$fg;
   //padding: 10px;
   font-size: 16px;
@@ -221,7 +221,7 @@
 
 .battery-bg{
     font-size: 22px;
-    color: #00ff00;
+    color: #12da34;
 }
 
 .battery-critical{
@@ -253,13 +253,13 @@
     border-radius: 10px;
 }
 .system_menu{
-    border-radius: 10px;
+    border-radius: 20px;
 }
 
 .system-menu-container{
-    border-radius: 10px;
+    border-radius: 20px;
     padding: 20px;
-    background-color: rgba(colors.$bg, 0.7);
+    background-color: rgba(colors.$bg, 1.0);
 }
 
 .system-stats{
@@ -296,7 +296,7 @@
     padding: 14px;
     border-radius: 20px;
     //backgrounmenu-widgetd-color: rgba(colors.$bg, 0.7);
-    background-color: rgba(colors.$bg_alt, 0.4);
+    background-color: rgba(colors.$bg_alt, 0.75);
 }
 
 .bottom-row{
@@ -313,7 +313,7 @@
     //padding-left: 10px;
     border-radius: 20px;
     //backgrounmenu-widgetd-color: rgba(colors.$bg, 0.7);
-    background-color: rgba(colors.$bg_alt, 0.5);
+    background-color: rgba(colors.$bg_alt, 0.75);
 }
 
 
@@ -329,16 +329,18 @@
 
 
 // Derived from: https://github.com/Axarva/dotfiles-2.0/blob/main/config/eww-1920/eww.scss
+// and https://github.com/janleigh/dotfiles/blob/master/cfg/eww/src/scss/control-center/rows/_third-row.scss
 .pfp{
     background-position: center;
-    background-repeat: no-repeat;
+    //background-repeat: no-repeat;
     border-radius: 100%;
-    min-width: 64px;
-    min-height:64px;
-    background-size: 64px;
-    margin-left: 0px;
-    margin-right: 4px;
-    background-image: url("/home/ghost/Pictures/zero.jpeg")
+    min-width: 10px;
+    min-height: 10px;
+    //background-size: 34px;
+    background-size: cover;
+    //margin-left: 0px;
+    //margin-right: 4px;
+    background-image: url("/home/ghost/Pictures/zero.jpeg");
 }
 
 .button{
@@ -365,6 +367,11 @@
 .circular-progress{
     background-color: colors.$bg; 
     color: colors.$color2; 
+}
+
+.circular-progress-battery{
+    background-color: colors.$bg; 
+    color: #12da34; 
 }
 
 
@@ -462,6 +469,10 @@
 
 .mic{
     font-size: 28px;
+}
+
+.stat{
+    margin: 6px;
 }
 
 

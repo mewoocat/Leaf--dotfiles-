@@ -1,3 +1,6 @@
+
+(defvar theme_light false)
+
 (defwidget theme_button []
   (eventbox
     :class "menu-button"

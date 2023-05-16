@@ -1,0 +1,92 @@
+;; Right widgets
+(defwidget right []
+    (box
+        :halign "end"
+        :space-evenly false
+        :spacing 10
+      (box
+        :spacing 20
+        :halign "end"
+        :space-evenly false
+        ;;(sprite)
+        ;;(weather)
+        (cpu)
+        (memory)
+        (bluetooth)
+        (wifi)
+        (battery)
+        (volume)
+      )
+      (system_menu_button) 
+    )
+)
+
+
+
+
+
+;; Left widgets
+
+(deflisten window :initial "..." "bash ~/.config/eww/scripts/get-window-title")
+(defwidget left []
+    (box 
+        :halign "start"
+        :space-evenly false
+        (launcher)
+        (workspaces_f)
+        ;;(workspaces_test :halign "center" :vexpand true :hexpand false :orientation "h")
+        (label 
+          :limit-width 30
+          :class "window-name"
+          :text "${window}")
+    )
+)
+
+
+
+
+;; Center
+(defwidget center []
+  (time)
+)
+
+
+;; Bar
+
+(defwindow bar
+  :monitor 0
+  :windowtype "dock"
+  :focusable false
+  :geometry (geometry :x "0%"
+                      :y "0%"
+                      :width "101%"
+                      :height 42
+                      :anchor "top center")
+  :exclusive true
+     
+	(centerbox :class "container" ;;:space-evenly "false"
+        :orientation "h"
+		(left)
+    (center)	
+    (right)
+    )
+)
+
+(defwindow bar_external
+  :monitor 1
+  :windowtype "dock"
+  :geometry (geometry :x "0%"
+                      :y "0%"
+                      ;; 4k monitor
+                      :width 3860
+                      :height 42
+                      :anchor "top center")
+  :exclusive true
+     
+	(centerbox :class "container" ;;:space-evenly "false"
+        :orientation "h"
+		(left)
+        (center)	
+        (right)
+    )
+)

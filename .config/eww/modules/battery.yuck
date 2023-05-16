@@ -1,6 +1,35 @@
+
+(defpoll battery
+    :interval "1s"
+    "scripts/battery.sh"
+)
+
 (defpoll battery_status
   :interval "1s"
   "scripts/battery_status.sh"
+)
+
+
+(defwidget battery_icon []
+  (overlay
+    (label
+      :class "battery icon "
+      :text "${battery.bg}"
+    )
+    (label
+      :class "battery-bg icon ${battery.critical == "yes" ? "battery-critical" : ""}"
+      :text "${battery.icon}"
+    )
+  )
+)
+
+(defwidget battery []
+  (box
+    (label
+      :text "${EWW_BATTERY.BAT0.capacity}%"
+    )
+    (battery_icon)
+  )
 )
 
 (defwidget battery_stats []
@@ -22,6 +51,34 @@
       )
       (label
         :text "${battery_status}" 
+      )
+    )
+  )
+)
+
+(defwidget battery_stats_v2 []
+  (eventbox
+    :class "menu-widget"
+    ;;:height 126
+    :orientation "h"
+    :height 72
+    ;;:width 144
+    :hexpand true
+    (box
+      :orientation "h"
+      (overlay
+        (circular-progress
+          :class "battery-bg circular-progress-battery stat ${battery.critical == "yes" ? "battery-critical" : ""}"
+          :thickness 8
+          :value "${EWW_BATTERY.BAT0.capacity}"
+        )
+        ;;(label
+        ;;  :text "${EWW_BATTERY.BAT0.capacity}%"
+        ;;)
+        (battery_icon)
+      )
+      (label
+        :text "Battery\\n${EWW_BATTERY.BAT0.capacity}%";;"${battery_status}" 
       )
     )
   )

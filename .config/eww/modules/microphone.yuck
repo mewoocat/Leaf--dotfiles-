@@ -3,16 +3,20 @@
     :space-evenly false
     (label
       :text "${microphone.icon}"
-      :class "mic"
+      :class {microphone.mute == "true" ? "mic off" : "mic"}
+      :style {microphone.mute == "true" ? "font-size: 28px;" : ""}
       :width 24
     )
-    (scale
+    (eventbox
+      :cursor "pointer"
       :hexpand true
-      :class "volume-slider"
-      :value "${microphone.level}"
-      :min 0
-      :max 101
-      :onchange "amixer set Capture {}% unmute"
+      (scale
+        :class "volume-slider"
+        :value "${microphone.level}"
+        :min 0
+        :max 101
+        :onchange "amixer set Capture {}% unmute"
+      )
     )
   )
 )

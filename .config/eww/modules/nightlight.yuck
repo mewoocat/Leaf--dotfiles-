@@ -1,3 +1,6 @@
+
+(defvar night_light false)
+
 (defwidget nightlight_button []
   (eventbox
     :class {night_light ? "menu-button menu-button-active" : "menu-button"}

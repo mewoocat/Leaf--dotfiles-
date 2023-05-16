@@ -1,0 +1,14 @@
+
+(defpoll weather_info
+  :interval "10s"
+  "scripts/weather.sh"
+)
+
+;; WARNING... Could cause eww to freeze on reload
+(defwidget weather []
+  (label
+    :class "weather"
+    ;;:text "${weather_info}"
+    :text "weather n/a"
+  )
+)
