@@ -12,8 +12,9 @@ function handle {
     hyprctl dispatch moveworkspacetomonitor "8 1"
     hyprctl dispatch moveworkspacetomonitor "9 1"
     hyprctl dispatch moveworkspacetomonitor "10 1"
-    #swww img ~/.config/wallpaper.jpg
-    ./.scripts/theme.sh -w
+    wallpaper=$(cat ~/.config/wallpaper)
+    swww img $wallpaper
+    #./.scripts/theme.sh -w
   fi
 }
 

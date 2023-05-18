@@ -259,7 +259,7 @@
 .system-menu-container{
     border-radius: 20px;
     padding: 20px;
-    background-color: rgba(colors.$bg, 1.0);
+    background-color: rgba(colors.$bg, 0.6);
 }
 
 .system-stats{
@@ -296,7 +296,7 @@
     padding: 14px;
     border-radius: 20px;
     //backgrounmenu-widgetd-color: rgba(colors.$bg, 0.7);
-    background-color: rgba(colors.$bg_alt, 0.75);
+    background-color: rgba(colors.$bg_alt, 0.6);
 }
 
 .bottom-row{
@@ -464,7 +464,7 @@
 }
 
 .off{
-    color: rgb(colors.$fg_alt, 1.0);
+    color: rgb(colors.$fg_alt, 0.3);
 }
 
 .mic{
