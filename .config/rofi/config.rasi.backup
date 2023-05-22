@@ -1,0 +1,38 @@
+configuration {
+	modi:				"drun";
+	font:				"Roboto 16";
+	show-icons:			true;
+	display-drun: 			"";
+	sidebar-mode: 			false;
+	location: 1;
+}
+// https://www.reddit.com/r/qtools/comments/bo39dc/how_to_change_the_rofi_window_position/
+window {
+location:   north west;
+anchor:   north west;
+height:    90%;
+width:   22%;
+orientation:   horizontal;
+x-offset:   12px;        
+y-offset:   12px;
+}
+
+//@theme "/dev/null"
+
+
+        
+//@theme "/usr/share/rofi/themes/gruvbox-dark.rasi"
+
+@import "~/.cache/wal/colors-rofi-dark"
+
+
+
+element-text {
+      background-color: inherit;
+      text-color: inherit;
+}
+
+element-icon{
+	size: 2.4ch;
+}
+
