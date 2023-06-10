@@ -21,6 +21,9 @@
     border-color: rgba(colors.$bg_alt, 0.9);;
     border-width: 2px;
     border-style: solid;
+    border-radius: 20px;
+    background-color: rgba(colors.$bg, 0.6);
+
 }
 
 .calendar{
@@ -252,14 +255,12 @@
 .calendar{
     border-radius: 10px;
 }
-.system_menu{
-    border-radius: 20px;
-}
+
 
 .system-menu-container{
-    border-radius: 20px;
+    //border-radius: 20px;
     padding: 20px;
-    background-color: rgba(colors.$bg, 0.6);
+    //background-color: rgba(colors.$bg, 1.0);
 }
 
 .system-stats{
@@ -312,8 +313,15 @@
     //padding: 8px 14px 8px 14px;
     //padding-left: 10px;
     border-radius: 20px;
+    border-style: solid;
+    border-color: rgba(colors.$bg_alt, 0.2);;
+    border-width: 2px;
     //backgrounmenu-widgetd-color: rgba(colors.$bg, 0.7);
-    background-color: rgba(colors.$bg_alt, 0.75);
+    background-color: rgba(colors.$bg_alt, 0.6);
+
+    // from https://www.youtube.com/watch?v=92XyPflDwkE
+    //box-shadow: 10px 10px 10px -1px rgba(colors.$bg, 1.0), 
+    //            -10px -10px 10px -1px rgba(colors.$bg, 1.0);
 }
 
 
@@ -464,7 +472,7 @@
 }
 
 .off{
-    color: rgb(colors.$fg_alt, 0.3);
+    color: rgb(colors.$fg_alt, 0.5);
 }
 
 .mic{

@@ -1,4 +1,3 @@
-#!/bin/bash
 
 
 # Inputs
@@ -40,11 +39,17 @@ wallpaper_dark="/home/ghost/wallpapers/pexels-irina-iriser-837453.jpg"
 wallpaper_dark="/home/ghost/wallpapers/pexels-sebastian-sørensen-1276518.jpg"
 wallpaper_light="/home/ghost/wallpapers/isn8l7lknxua1.png"
 wallpaper_light="/home/ghost/wallpapers/10-13.jpg"
+wallpaper_light="/home/ghost/wallpapers/0303.jpg"
 wallpaper_dark="/home/ghost/wallpapers/isn8l7lknxua1.png"
 wallpaper_dark="/home/ghost/wallpapers/pexels-peter-fazekas-1089462.jpg"
 wallpaper_dark="/home/ghost/wallpapers/pexels-daniel-frese-1055379.jpg"
 wallpaper_dark="/home/ghost/wallpapers/pexels-lumn-167698.jpg"
 wallpaper_dark="/home/ghost/wallpapers/0301.jpg"
+wallpaper_dark="/home/ghost/wallpapers/vectorsun.jpg"
+wallpaper_dark="/home/ghost/wallpapers/12-Dark.jpg"
+wallpaper_dark="/home/ghost/wallpapers/pexels-rafael-cerqueira-4737484.jpg"
+wallpaper_light="/home/ghost/wallpapers/pexels-lesley-1193892.jpg"
+wallpaper_dark="/home/ghost/wallpapers/12hnsuja47da1.webp"
 
 theme_colors="base16-3024"
 #theme_colors_light="base16-atelier-dune"
@@ -60,10 +65,12 @@ theme_colors_dark="base16-macintosh"
 theme_colors_dark="base16-3024"
 theme_colors_dark="base16-chalk"
 theme_colors_dark="base16-atelier-seaside"
-theme_colors_dark="base16-gruvbox-hard"
-theme_colors_light="base16-google"
+#theme_colors_dark="base16-gruvbox-hard"
+#theme_colors_light="base16-google"
 theme_colors_dark="base16-google"
-theme_colors_dark="base16-chalk"
+#theme_colors_dark="base16-chalk"
+theme_colors_dark=~/.config/wal/custom/theme_1.json
+theme_colors_light=~/.config/wal/custom/theme_2.json
 
 gtk_light_theme="Mojave-Light"
 gtk_dark_theme="Mojave-Dark"
@@ -138,7 +145,7 @@ function setEWWColors(){
 
     if [ $mode == "light" ]; then
         echo "hi"
-        echo "\$bg_alt: $(darken_color $bg 80);" >> ~/.config/eww/_colors.scss;
+        echo "\$bg_alt: $(darken_color $bg 40);" >> ~/.config/eww/_colors.scss;
         #echo "\$fg_alt: $(lighten_color $fg 100);" >> ~/.config/eww/_colors.scss;
         echo "\$fg_alt: $(darken_color $bg 100);" >> ~/.config/eww/_colors.scss;
     fi
@@ -179,6 +186,22 @@ function setEWWColors(){
     #eww reload;
 }
 
+function setGtkColors(){
+    mode=$1
+
+    path="/home/ghost/.themes/default/gtk-3.0/pywal-colors.css"
+
+    # sed command from https://stackoverflow.com/questions/6022384/bash-tool-to-get-nth-line-from-a-file
+    echo "@define-color bg $(sed '1q;d' ~/.cache/wal/colors);" > $path;
+    echo "@define-color fg $(sed '16q;d' ~/.cache/wal/colors);" >> $path;
+    
+    # Get theme variables 
+    bg=$(sed '1q;d' ~/.cache/wal/colors | cut -c 2-)
+    fg=$(sed '16q;d' ~/.cache/wal/colors | cut -c 2-)
+    
+
+}
+
 function setRofiColors(){
     # Global ignore from:  https://stackoverflow.com/questions/102049/how-do-i-escape-the-wildcard-asterisk-character-in-bash
     GLOBIGNORE="*"
@@ -197,12 +220,14 @@ function setRofiColors(){
 
 }
 
+
+
 function setLight(){
     wal -l --theme $theme_colors_light; 
     gsettings set org.gnome.desktop.interface gtk-theme $gtk_light_theme;
     swww img $wallpaper_light;
-        :width 500
-        :width 500
+    #    :width 500
+    #    :width 500
     setEWWColors light;
     #killall eww && killall eww && eww open bar;
     echo $wallpaper_light > ~/.config/wallpaper;
@@ -233,11 +258,12 @@ function setWallpaperDark(){
     echo "here"
     bgBlack=$2
     if [ $bgBlack == true ]; then
-        echo "true"
-        wal -i $1 -b 000000 --backend colorz;
+        echo "blah blah...";
+        wal -i $1 -b 000000;
     else
-        echo "false"
-        wal -i $1;
+        echo "not..."
+        #wal --backend colorz -i $1;
+        wal  -i $1;
     fi
     gsettings set org.gnome.desktop.interface gtk-theme $gtk_dark_theme;
     swww img $1;
@@ -328,14 +354,21 @@ currentWallpaper=$(cat ~/.config/wallpaper)
 
 if [ $theme == true ]; then
 	# sets gtk theme colors
-	oomox-cli /opt/oomox/scripted_colors/xresources/xresources-reverse > /dev/null
+    #oomox-cli /opt/oomox/scripted_colors/xresources/xresources-reverse > /dev/null
 	#oomox-cli /opt/oomox/scripted_colors/xresources/xresources-reverse-materia > /dev/null
 	# reloads gtk theme
-    gsettings set org.gnome.desktop.interface gtk-theme "oomox-xresources-reverse"
+    #gsettings set org.gnome.desktop.interface gtk-theme "oomox-xresources-reverse"
 	#killall xsettingsd > /dev/null 2>&1
 	#timeout 1 xsettingsd -c .config/xsettingsd/xsettingsd.conf > /dev/null 2>&1
+    
+    setGtkColors
+    gsettings set org.gnome.desktop.interface gtk-theme "default"
+
 fi
 #reset
 #
 #killall eww && killall eww && eww open bar
+
+eww reload
+
 exit 0

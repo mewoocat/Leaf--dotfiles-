@@ -60,7 +60,7 @@
   :geometry (geometry :x "0%"
                       :y "0%"
                       :width "101%"
-                      :height 42
+                      :height 12
                       :anchor "top center")
   :exclusive true
      

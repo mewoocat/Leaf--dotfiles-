@@ -203,10 +203,10 @@
   ;;(literal
   ;;  :content "${system_menu_open ? '(system_menu_items)' : '(wifi_list)'}"
   ;;)
-  (eventbox
+  ;;(eventbox
     ;;:style "border-radius: 50px;"
     ;;:onhover 
     ;;:onhoverlost
-    (system_menu_items)
-  )
+  (system_menu_items)
+  ;;)
 )
