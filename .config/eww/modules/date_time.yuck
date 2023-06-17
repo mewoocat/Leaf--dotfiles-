@@ -31,11 +31,8 @@
                       ;;:width "20%"
                       ;;:height "24%"
                       :anchor "top center")
-  (box
-  
+  (box 
     :class "calendar-widget"
-    (calendar
-    )
+    (calendar)
   )
-
 )

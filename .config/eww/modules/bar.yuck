@@ -10,7 +10,9 @@
         :space-evenly false
         ;;(sprite)
         ;;(weather)
-        (cpu)
+        (storage)
+        (cpu_usage)
+        (cpu_temp)
         (memory)
         (bluetooth)
         (wifi)

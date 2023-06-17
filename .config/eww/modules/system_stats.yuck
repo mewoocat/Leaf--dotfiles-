@@ -19,7 +19,7 @@
     )
     (label
       :text "${temp}°C | ${round(EWW_CPU.avg, 0)}%"
-      :class "icon"
+      ;;:class "icon"
       ;;:halign "end"       ;; Use this to fix dumbass spacing issue
       :width 0
     )
@@ -27,22 +27,36 @@
 ) 
 
 (defwidget cpu_temp []
-  (label
-    :text " ${temp}°C"
-    :class "icon"
-    ;;:halign "end"       ;; Use this to fix dumbass spacing issue
-    :width 0
+  (box
+    :space-evenly false
+    (label
+      :class "icon temp-icon"
+      :text "♨  "
+    )
+    (label
+      :text "${temp}°C" 
+      ;;:class "icon"
+      ;;:halign "end"       ;; Use this to fix dumbass spacing issue
+      :width 0
+    )
   )
-)
+) 
 
 (defwidget cpu_usage []
-  (label
-    :text " ${round(EWW_CPU.avg, 0)}%"
-    :class "icon"
-    ;;:halign "end"       ;; Use this to fix dumbass spacing issue
-    :width 0
+  (box
+    :space-evenly false
+    (label
+      :class "icon cpu-icon"
+      :text " "
+    )
+    (label
+      :text "${round(EWW_CPU.avg, 0)}%" 
+      ;;:class "icon"
+      ;;:halign "end"       ;; Use this to fix dumbass spacing issue
+      :width 0
+    )
   )
-)
+) 
 
 (defwidget cpu_icon []
   (label
@@ -61,7 +75,7 @@
     )
     (label
       :text "${memory}%"
-      :class "icon"
+      ;;:class "icon"
     )
   )
 ) 
@@ -114,3 +128,19 @@
     (battery_stats_v2)
   )
 )
+
+(defwidget storage []
+  (box
+    :space-evenly false
+    (label
+      :class "icon storage-icon"
+      :text "🖴  "
+    )
+    (label
+      :text "${round(EWW_DISK["/"].used_perc, 0)}%"
+      ;;:class "icon"
+      ;;:halign "end"       ;; Use this to fix dumbass spacing issue
+      :width 0
+    )
+  )
+) 

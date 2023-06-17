@@ -3,6 +3,9 @@
   "scripts/getBluetooth.sh"
 )
 
+
+(defvar  bluetooth_window_open false)
+
 (defwidget bluetooth []
   ;; bluetooth power on/off
   (label
@@ -19,6 +22,8 @@
     :height 72
     :width 72
     :onclick "scripts/toggleBluetooth.sh"
+    ;;:onclick "scripts/toggleBluetoothWindow.sh"
+
     (box
       ;;:class {bluetoothPower ? "bluetooth-on" : ""}
       ;;:space-evenly false
@@ -34,5 +39,22 @@
   )
 )
 
+(defwidget bluetooth_menu []
+  (box
+    :class "bluetooth-container"
+    (label :text "hi")
+  )
+)
 
+(defwindow bluetooth_window
+  :monitor 0
+  :windowtype "normal"
+  :focusable false
+  :geometry (geometry :x "8px"
+                      :y "8px"
+                      :width "350px"
+                      :height "0%"
+                      :anchor "top right")
 
+  (bluetooth_menu)
+)

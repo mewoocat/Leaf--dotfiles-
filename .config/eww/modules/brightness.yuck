@@ -25,3 +25,30 @@
     )
   )
 )
+
+
+
+;; Brightness osd
+(defwindow brightnessOSD
+  :monitor 0
+  :windowtype "normal"
+  :focusable false
+  :geometry (geometry :x "1%"
+                      :y "1%"
+                      :width 400
+                      :height 0
+                      :anchor "bottom right")
+  ;;:exclusive true
+     
+  ;;(brightness-slider)
+  (box
+    :class "osd-container"
+    ;;(brightness_slider)
+
+    (box
+      :class "osd-sliders"
+      :orientation "v"
+      (brightness_slider)
+    )
+  )
+)

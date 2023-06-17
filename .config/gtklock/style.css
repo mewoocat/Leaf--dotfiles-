@@ -1,0 +1,5 @@
+#window-box{
+   background-color: alpha(#000000, 0.8);
+   border-radius: 20px;
+   padding: 48px;
+}

@@ -21,10 +21,9 @@ export GLFW_IM_MODULE=ibus
 
 export SDL_VIDEODRIVER=wayland
 export _JAVA_AWT_WM_NONREPARENTING=1
-export QT_QPA_PLATFORM=wayland
+export QT_QPA_PLATFORM="wayland;xcb"
 export XDG_CURRENT_DESKTOP=sway
 export XDG_SESSION_DESKTOP=sway
-
 # New
 export GDK_BACKEND=wayland
 

@@ -23,7 +23,6 @@
 )
 
 (defvar power_reveal false)
-(defvar system_menu_open true)
 
 ;; System menu
 
@@ -190,6 +189,8 @@
   )
 )
 
+(defvar system_menu_open false)
+
 
 (defwindow system_menu
   :monitor 0
@@ -197,7 +198,7 @@
   :focusable false
   :geometry (geometry :x "8px"
                       :y "8px"
-                      :width "260px"
+                      :width "350px"
                       :height "0%"
                       :anchor "top right")
   ;;(literal
@@ -207,6 +208,18 @@
     ;;:style "border-radius: 50px;"
     ;;:onhover 
     ;;:onhoverlost
-  (system_menu_items)
+  
   ;;)
+
+  (revealer
+    :reveal {system_menu_open}
+    :transition "slidedown"
+    :duration "150ms"
+    (box
+      :class "system-menu-container-base"
+     (system_menu_items)
+    )
+  )
 )
+
+

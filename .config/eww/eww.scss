@@ -16,7 +16,7 @@
 
 }
 
-.system_menu{
+.system-menu-container-base{
     color: colors.$fg;
     border-color: rgba(colors.$bg_alt, 0.9);;
     border-width: 2px;
@@ -26,18 +26,17 @@
 
 }
 
-.calendar{
-    background-color: rgba(colors.$bg, 0.1);
-    color: colors.$fg;
+.calendar-widget{
+    font-size: 16px;
+    //margin: 20px;
+    padding: 40px;
     border-color: rgba(colors.$bg_alt, 0.8);;
     border-width: 2px;
     border-style: solid;
-    padding: 100px;
-}
+    border-radius: 20px;
+    background-color: rgba(colors.$bg, 0.6);
 
-.calendar-widget{
-    font-size: 16px;
-    margin: 20px;
+
 }
 
 .bar_external {
@@ -52,6 +51,10 @@
 .container{
     padding: 0px;
     padding-left: 0px;
+}
+
+.bluetooth-container{
+    background-color: rgba(colors.$bg, 0.6);
 }
 
 .button-box{
@@ -244,17 +247,9 @@
 
 .icon{
     font-family: "icon_font";
-    //font-size: 24px;
 }
 
-.calendar{
-    background-color: rgba(colors.$bg, 0.9);
-    padding: 0px;
 
-}
-.calendar{
-    border-radius: 10px;
-}
 
 
 .system-menu-container{
@@ -291,6 +286,27 @@
   //margin-right: 20px;
 }
 
+
+.osd-sliders{
+    //padding: 40px; // Doesn't work????
+    border-radius: 10px;
+    //background-color: rgba(colors.$bg, 0.7);
+}
+
+.osd-sliders scale trough highlight {
+  all: unset;
+  background-color: colors.$color3;
+  color: #000000;
+  border-radius: 20px;
+}
+.osd-sliders scale trough {
+  all: unset;
+  background-color: colors.$bg;
+  border-radius: 80px;
+  min-height: 30px;
+  min-width: 50px;
+  margin-left: 10px;
+}
 
 .menu-widget{
     //padding: 8px 14px 8px 14px;
@@ -391,9 +407,18 @@
     color: colors.$color4; 
 }
 
+.storage-icon{
+    color: colors.$color2;
+}
+
+.temp-icon{
+    color: colors.$color3;
+    font-size: 22px;
+}
 
 .cpu-icon{
-    color: colors.$color1
+    color: colors.$color1;
+    //font-size: 16px;
 }
 
 .mem-icon{
@@ -509,4 +534,10 @@
 
 .restart{
 
+}
+
+.osd-container{
+    padding: 20px;
+    border-radius: 20px;
+    background-color: rgba(colors.$bg, 0.6); 
 }
