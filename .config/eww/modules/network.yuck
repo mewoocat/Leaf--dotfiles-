@@ -18,7 +18,7 @@
     :class "menu-button"
     :cursor "pointer"
     :onclick "scripts/toggleWifiMenu.sh"
-    :height 60
+    :height {widgetSize}
     (box
       :space-evenly false
       :spacing 8

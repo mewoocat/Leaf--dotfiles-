@@ -61,7 +61,7 @@
     :class "menu-widget"
     ;;:height 126
     :orientation "h"
-    :height 72
+    :height {widgetSize}
     ;;:width 144
     :hexpand true
     (box

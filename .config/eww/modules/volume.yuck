@@ -4,19 +4,27 @@
 
 (defwidget volume_slider []
   (box
+    :orientation "v"
     :space-evenly false
-    (volume)
-    (eventbox
-      :hexpand true
+    (label 
+      :text "${volumeL.device}"
+      :halign "start"
+    )
+    (box
       :space-evenly false
-      :cursor "pointer"
-      (scale
+      (volume)
+      (eventbox
         :hexpand true
-        :class "volume-slider"
-        :value "${volumeL.level}"
-        :min 0
-        :max 101
-        :onchange "pamixer --set-volume {}"
+        :space-evenly false
+        :cursor "pointer"
+        (scale
+          :hexpand true
+          :class "volume-slider"
+          :value "${volumeL.level}"
+          :min 0
+          :max 101
+          :onchange "pamixer --set-volume {}"
+        )
       )
     )
   )

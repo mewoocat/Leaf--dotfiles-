@@ -24,5 +24,7 @@ else
     bg=$(echo -e "")
 fi
 
+device=$(pactl list sinks | grep device.description | awk -F "=" '{print $2}' | tr -d '"' | cut --complement -b 1)
+
 #echo -n $level
-echo "{\"icon\": \"${icon}\", \"bg\": \"${bg}\", \"level\": \"${level}\", \"mute\": \"${mute}\"}"
+echo "{\"icon\": \"${icon}\", \"bg\": \"${bg}\", \"level\": \"${level}\", \"mute\": \"${mute}\", \"device\": \"${device}\"}"

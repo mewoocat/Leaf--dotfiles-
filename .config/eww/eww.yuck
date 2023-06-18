@@ -3,6 +3,8 @@
 
 ;;(defpoll get_theme_light :interval "200ms" "cat theme_light")
 
+(defvar widgetSize 64)
+
 ;; Module imports
 (include "modules/network.yuck")
 (include "modules/bluetooth.yuck")
@@ -23,6 +25,4 @@
 (include "modules/sprite.yuck")
 (include "modules/system_menu.yuck")
 (include "modules/bar.yuck")
-
-
 

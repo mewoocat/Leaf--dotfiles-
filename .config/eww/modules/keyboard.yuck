@@ -3,8 +3,8 @@
     :class {night_light ? "menu-button menu-button-active" : "menu-button"}
     :cursor "pointer"
     ;;:onclick {night_light ? "scripts/night_light.sh off" : "scripts/night_light.sh on"}
-    :height 72
-    :width 72
+    :height {widgetSize}
+    :width {widgetSize}
     :halign "end"
     (box
       :space-evenly false

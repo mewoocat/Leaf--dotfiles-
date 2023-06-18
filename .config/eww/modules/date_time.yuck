@@ -33,6 +33,8 @@
                       :anchor "top center")
   (box 
     :class "calendar-widget"
-    (calendar)
+    (calendar
+      :show-day-names true
+    )
   )
 )

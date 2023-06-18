@@ -19,8 +19,8 @@
   (eventbox
     :class {bluetoothPower ? "menu-button bluetooth-on" : "menu-button"}
     :cursor "pointer"
-    :height 72
-    :width 72
+    :height {widgetSize}
+    :width {widgetSize}
     :onclick "scripts/toggleBluetooth.sh"
     ;;:onclick "scripts/toggleBluetoothWindow.sh"
 

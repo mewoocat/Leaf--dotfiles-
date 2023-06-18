@@ -80,6 +80,31 @@
   )
 ) 
 
+(defwidget temp_widget []
+  (eventbox
+
+  ;;:space-evenly false
+  :class "menu-button stat"
+  ;;:cursor "pointer"
+  :height {widgetSize}
+  :width {widgetSize}
+  (overlay
+    :orientation "v"
+    (circular-progress
+      :class "circular-progress circular-progress-temp stat"
+      :thickness 8
+      :value "${temp}"
+    )
+    ;;(cpu_usage)
+    (label
+    :class "icon"
+    :text "♨"
+  )
+
+    )
+  )
+)
+
 (defwidget system_stats []
   (box
     ;;:class "menu-widget"
@@ -93,8 +118,8 @@
       :class "menu-button stat"
       ;;:cursor "pointer"
       ;;:onclick "scripts/toggleWifiMenu.sh"
-      :height 72
-      :width 72
+      :height {widgetSize}
+      :width {widgetSize}
       (overlay
         :orientation "v"
         (circular-progress
@@ -108,8 +133,8 @@
     )
     (eventbox
       :class "menu-button"
-      :height 72
-      :width 72
+      :height {widgetSize}
+      :width {widgetSize}
       (overlay
         :orientation "v"
         (circular-progress
@@ -126,7 +151,7 @@
       )
     )
     (battery_stats_v2)
-  )
+      )
 )
 
 (defwidget storage []
